@@ -5,5 +5,8 @@ WORKDIR /backend
 ADD ../../backend /backend
 
 RUN go install
+RUN go get -u github.com/cosmtrek/air && \
+    go build -o /go/bin/air github.com/cosmtrek/air
 
-ENTRYPOINT ["go", "run", "main.go"]
+# ENTRYPOINT ["go", "run", "main.go"]
+ENTRYPOINT ["air", "-c", ".air.toml"]
