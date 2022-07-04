@@ -3,7 +3,11 @@
 import したものをいい感じに解消して go.mod に書いてくれるコマンド
 
 ```
-go mod tidy
+docker-compose exec go go mod tidy
+```
+
+```
+docker-compose exec go get りんく
 ```
 
 # deno 関連
