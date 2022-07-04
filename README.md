@@ -5,8 +5,12 @@
 Deno のフレームワーク Fresh1.0 を利用
 
 ```
- deno task start
+docker-compose up -d
 ```
+
+http://localhost/
+
+http://localhost/api
 
 なんちゃってアイランドアーキテクチャ。
 
