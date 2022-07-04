@@ -12,6 +12,18 @@ services:
     ports:
       - 8080:8080
 
+  deno:
+    build:
+      context: .
+      dockerfile: ./infra/deno/Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    ports:
+      - 8000:8000
+
   mysql:
     build: ./infra/mysql
     environment:
@@ -25,7 +37,6 @@ services:
 
   nginx:
     build: ./infra/nginx
-    container_name: "nginx"
     ports:
       - "80:80"
     depends_on:
