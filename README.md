@@ -1,12 +1,12 @@
 #
 
-## フロントエンド
-
-Deno のフレームワーク Fresh1.0 を利用
-
 ```
 docker-compose up -d
 ```
+
+## フロントエンド
+
+Deno のフレームワーク Fresh1.0 を利用
 
 http://localhost/
 
@@ -20,3 +20,11 @@ http://localhost/api
 https://zenn.dev/azukiazusa/articles/fresh-tutorial
 
 https://zenn.dev/k41531/articles/69c9342f7022dd
+
+## バックエンド
+
+go のフレームワーク gin を利用
+
+## nlp
+
+go の形態素解析ライブラリ、kagome を利用

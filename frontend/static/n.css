@@ -1,0 +1,33 @@
+body {
+  scroll-behavior: smooth;
+  width: 100vw;
+  min-height: 100vh;
+  background: radial-gradient(#e1f7ac, #baf7ba);
+  /* background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-position: center;
+  background-image: url("img/bg/bg.svg"); */
+}
+
+@font-face {
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Kaisei Decol";
+  src: url("/fonts/KaiseiDecol-Medium.ttf") format("truetype");
+}
+.kaisei-decol {
+  font-family: "Kaisei Decol";
+}
+
+.glass-frame {
+  width: 300px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
