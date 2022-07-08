@@ -18,6 +18,4 @@ jobs:
           username: ${{ secrets.API_USERNAME }}
           key: ${{ secrets.API_SSH_KEY }}
           port: ${{ secrets.API_PORT }}
-          script: |
-            cd ${{ secrets.API_DIR }}
-            git pull origin main
+          script: whoami
