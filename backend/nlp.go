@@ -1,4 +1,4 @@
-package main
+package nlp
 
 import (
 	"fmt"
@@ -7,12 +7,23 @@ import (
 	"github.com/ikawaha/kagome-dict/ipa"
 	"github.com/ikawaha/kagome/v2/tokenizer"
 )
-
-func main() {
+func nlpTest(words string)(array){
 	t, err := tokenizer.New(ipa.Dict(), tokenizer.OmitBosEos())
 	if err != nil {
 		panic(err)
 	}
+	tokens := t.Tokenize(words)
+
+	return tokens
+	
+}
+
+func nlp() {
+	t, err := tokenizer.New(ipa.Dict(), tokenizer.OmitBosEos())
+	if err != nil {
+		panic(err)
+	}
+	
 	// wakati
 	fmt.Println("---wakati---")
 	seg := t.Wakati("しぐれうい先生を推しています。")
