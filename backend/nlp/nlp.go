@@ -7,7 +7,7 @@ import (
 	"github.com/ikawaha/kagome-dict/ipa"
 	"github.com/ikawaha/kagome/v2/tokenizer"
 )
-func nlpTest(words string)(array){
+func NlpTest(words string)(array){
 	t, err := tokenizer.New(ipa.Dict(), tokenizer.OmitBosEos())
 	if err != nil {
 		panic(err)
