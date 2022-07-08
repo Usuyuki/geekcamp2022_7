@@ -1,4 +1,4 @@
-module github.com/Usuyuki/geekcamp2022_7
+module github.com/Usuyuki/musubineru
 
 go 1.18
 

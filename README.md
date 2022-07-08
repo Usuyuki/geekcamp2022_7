@@ -1,4 +1,18 @@
-#
+# むすびねる(musubineru)
+
+プロダクトの名前決め補助サービス.
+
+名前の由来は ClickUp を参考にされたい.
+
+## ローカル
+
+```
+git clone
+```
+
+```
+cd
+```
 
 ```
 docker-compose up -d

@@ -18,11 +18,12 @@ https://color.adobe.com/ja/create/color-wheel
 
 ## 背景
 
-https://app.heazy.studio/  
+https://app.heazy.studio/
 で生成
 
 ## グラスモーフィズム
 
+https://hype4.academy/tools/glassmorphism-generator
 で生成
 
 ## フォント
