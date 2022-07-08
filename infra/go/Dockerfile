@@ -1,5 +1,8 @@
-FROM golang:1.18-alpine
-RUN apk update && apk add git && apk add bash && apk add vim
+FROM golang:1.18-bullseye
+RUN apt-get update && \
+    apt-get -y install git bash vim && \
+    apt-get clean && \
+rm -rf /var/lib/apt/lists/
 RUN mkdir /backend
 WORKDIR /backend
 ADD ../../backend /backend
