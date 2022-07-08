@@ -1,10 +1,12 @@
 # go 関連のコマンド
 
-import したものをいい感じに解消して go.mod に書いてくれるコマンド
+依存関係をいい感じに解消して go.mod に書いてくれるコマンド
 
 ```
 docker-compose exec go go mod tidy
 ```
+
+モジュール追加
 
 ```
 docker-compose exec go get りんく
@@ -13,5 +15,5 @@ docker-compose exec go get りんく
 # deno 関連
 
 ```
- deno task start
+deno task start
 ```
