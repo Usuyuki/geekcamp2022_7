@@ -21,3 +21,5 @@ jobs:
           script: |
             cd ${{ secrets.API_DIR }}
             git pull origin main
+            cd backend
+            go mod tidy

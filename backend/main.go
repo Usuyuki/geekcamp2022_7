@@ -14,7 +14,8 @@ func main() {
 	// }
     router.GET("/", func(c *gin.Context) {
         c.JSON(200, gin.H{
-            "message": "技育博用のdocker整備！！",
+            "message": "技育博用のdocker整備です",
+            "hitokoto": "はじまった！",
         })
     })
 
