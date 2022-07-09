@@ -5,6 +5,7 @@ import (
     "github.com/gin-contrib/cors"
     // "nlp"
     "time"
+    // "fmt"
 )
 
 func main() {
@@ -48,5 +49,19 @@ func main() {
         })
     })
 
+    // router.POST("/run",runGetter)
+
     router.Run(":8001")
 }
+
+// type InputIdea struct {
+// 	name string
+// }   
+// func runGetter(c *gin.Context) {
+// 	var hoge InputIdea
+// 	c.BindJSON(&hoge)
+// 	fmt.Println(hoge.name)
+//     res := []string{hoge.name, "bar"}
+//     c.JSON(200, gin.H{res
+//     })
+// }

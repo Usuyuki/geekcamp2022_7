@@ -1,27 +1,12 @@
 /** @jsx h */
 import { h, PageProps } from "preact";
-import { Head } from "$fresh/src/runtime/head.ts";
 import { tw } from "@twind";
 import { Handlers } from "$fresh/server.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
-// interface User {
-//   login: string;
-//   name: string;
-//   avatar_url: string;
-// }
-
-// export const handler: Handlers<User | null> = {
-//   async GET(_, ctx) {
-//     const { username } = ctx.params;
-//     const resp = await fetch(`https://api.github.com/users/${username}`);
-//     if (resp.status === 404) {
-//       return ctx.render(null);
-//     }
-//     const user: User = await resp.json();
-//     return ctx.render(user);
-//   },
-// };
-
+import Layout from "@🗃/Layout/BasicLayout.tsx";
+import ApiError from "@🗃/Error/ApiError.tsx";
+import QuadCard from "@🗃/top/QuadCard.tsx";
+import TopCard from "@🗃/top/TopCard.tsx";
+import NormalLinkButton from "@🗃/Button/NormalLinkButton.tsx";
 interface Url {
   hitokoto: string;
   message: string;
@@ -40,70 +25,49 @@ export const handler: Handlers<Url | null> = {
 
 export default function Page({ data }: PageProps<Url | null>) {
   if (!data) {
-    return <h1>User not found</h1>;
+    return (
+      <ApiError
+        title="APIエラー"
+        details="APIとのやりとりにおいてエラーが生じました。"
+      />
+    );
   }
   return (
-    <div class={tw("h-screen")}>
-      <Head>
-        <title>musubineru</title>
-        <link rel="stylesheet" href="/n.css" />
-
-        <link
-          rel="apple-touch-icon"
-          type="image/png"
-          href="/img/favicon/apple-touch-icon-180x180.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/img/favicon/icon-192x192.png"
-        />
-      </Head>
-      <div
-        class={tw(
-          "max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-12 pb-20 flex flex-col"
-        )}
-      >
-        <div class={tw("absolute")}>
-          <div class={tw("relative top-4 left-20")}>
-            <div class="glass-frame">
-              <p
-                class={
-                  "kaisei-decol text-m8u-black" +
-                  tw("text-2xl text-center mt-20")
-                }
-              >
-                {data.message}
-              </p>
-            </div>
-          </div>
-          <div class="glass-frame">
-            <p
-              class={
-                "kaisei-decol " + tw("text-2xl text-center mt-20 text-gray-400")
-              }
-            >
-              {data.hitokoto}
+    <Layout title="top">
+      <div class={tw("flex justify-center flex-col")}>
+        <div
+          class={
+            tw("flex justify-around flex-wrap mx-auto order-2 md:order-1 ") +
+            " quad-card-wrapper"
+          }
+        >
+          <QuadCard target="小説" />
+          <QuadCard target="和歌" />
+          <QuadCard target="同音異義語" />
+          <QuadCard target="類語" />
+        </div>
+        <div class={tw("md:order-2 order-1 ")}>
+          <TopCard>
+            <p class={tw("text-2xl text-center ")}>
+              ムスビネルは
+              <br />
+              プロダクトの名前を
+              <br />
+              一緒に考える
+              <br />
+              サービスです。
+              <br />
             </p>
-          </div>
-          <div class={tw("relative bottom-4 right-20")}>
-            <div class="color-shadow-box">
-              <p
-                class={
-                  "kaisei-decol text-m8u-black " +
-                  tw("text-2xl text-center mt-20")
-                }
-              >
-                goから叩かれたAPIのテスト
-              </p>
-            </div>
-          </div>
-          <div class={"bg-m8u-1 text-m8u-black " + tw("w-20 h-20")}>
-            <p>aa</p>
-          </div>
-          <h2 class="text-m8u-white">あああ</h2>
+          </TopCard>
         </div>
       </div>
-    </div>
+      <div>
+        {data.message}
+        {data.hitokoto}
+      </div>
+      <div class={tw("flex justify-center mb-20")}>
+        <NormalLinkButton title="やってみる" url="/duck" />
+      </div>
+    </Layout>
   );
 }

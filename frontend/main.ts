@@ -10,10 +10,9 @@ import manifest from "./fresh.gen.ts";
 import { config, setup } from "@twind";
 import { virtualSheet } from "twind/sheets";
 
-import { env } from "./deps.ts";
 import "https://deno.land/x/dotenv/load.ts";
 
-console.log(Deno.env.get("API_URL"));
+// console.log(Deno.env.get("API_URL"));
 
 const sheet = virtualSheet();
 sheet.reset();
@@ -26,6 +25,7 @@ function render(ctx: RenderContext, render: InnerRenderFunction) {
   ctx.styles.splice(0, ctx.styles.length, ...sheet.target);
   const newSnapshot = sheet.reset();
   ctx.state.set("twind", newSnapshot);
+  ctx.lang = "ja";
 }
 
 await start(manifest, { render });
