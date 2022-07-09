@@ -1,9 +1,47 @@
 /** @jsx h */
-import { h } from "preact";
+import { h, PageProps } from "preact";
 import { Head } from "$fresh/src/runtime/head.ts";
 import { tw } from "@twind";
+import { Handlers } from "$fresh/server.ts";
+import { config } from "https://deno.land/x/dotenv/mod.ts";
+// interface User {
+//   login: string;
+//   name: string;
+//   avatar_url: string;
+// }
 
-export default function Home() {
+// export const handler: Handlers<User | null> = {
+//   async GET(_, ctx) {
+//     const { username } = ctx.params;
+//     const resp = await fetch(`https://api.github.com/users/${username}`);
+//     if (resp.status === 404) {
+//       return ctx.render(null);
+//     }
+//     const user: User = await resp.json();
+//     return ctx.render(user);
+//   },
+// };
+
+interface Url {
+  hitokoto: string;
+  message: string;
+}
+
+export const handler: Handlers<Url | null> = {
+  async GET(_, ctx) {
+    const resp = await fetch(Deno.env.get("API_URL"));
+    if (resp.status === 404) {
+      return ctx.render(null);
+    }
+    const url: Url = await resp.json();
+    return ctx.render(url);
+  },
+};
+
+export default function Page({ data }: PageProps<Url | null>) {
+  if (!data) {
+    return <h1>User not found</h1>;
+  }
   return (
     <div class={tw("h-screen")}>
       <Head>
@@ -35,7 +73,7 @@ export default function Home() {
                   tw("text-2xl text-center mt-20")
                 }
               >
-                サイン
+                {data.message}
               </p>
             </div>
           </div>
@@ -45,7 +83,7 @@ export default function Home() {
                 "kaisei-decol " + tw("text-2xl text-center mt-20 text-gray-400")
               }
             >
-              コサイン！
+              {data.hitokoto}
             </p>
           </div>
           <div class={tw("relative bottom-4 right-20")}>
@@ -56,7 +94,7 @@ export default function Home() {
                   tw("text-2xl text-center mt-20")
                 }
               >
-                ですわ～
+                goから叩かれたAPIのテスト
               </p>
             </div>
           </div>

@@ -4,6 +4,12 @@
 
 名前の由来は ClickUp を参考にされたい.
 
+## CI
+
+[![API鯖への自動デプロイ](https://github.com/Usuyuki/musubineru/actions/workflows/api_automatic_deploy.yml/badge.svg)](https://github.com/Usuyuki/musubineru/actions/workflows/api_automatic_deploy.yml)
+
+[![PR自動ラベル付与](https://github.com/Usuyuki/musubineru/actions/workflows/label.yml/badge.svg)](https://github.com/Usuyuki/musubineru/actions/workflows/label.yml)
+
 ## ローカル
 
 ```
@@ -11,11 +17,11 @@ git clone
 ```
 
 ```
-cd
+docker-compose up -d
 ```
 
 ```
-docker-compose up -d
+cp frontend/.env.example frontend/.env
 ```
 
 ## フロントエンド

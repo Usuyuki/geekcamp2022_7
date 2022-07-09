@@ -12,4 +12,5 @@ RUN go get -u github.com/cosmtrek/air && \
     go build -o /go/bin/air github.com/cosmtrek/air
 
 # ENTRYPOINT ["go", "run", "main.go"]
+ENTRYPOINT ["export", "GIN_MODE=debug", ".air.toml"]
 ENTRYPOINT ["air", "-c", ".air.toml"]
