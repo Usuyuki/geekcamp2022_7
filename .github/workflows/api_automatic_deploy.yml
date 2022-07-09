@@ -22,4 +22,4 @@ jobs:
             cd ${{ secrets.API_DIR }}
             git pull origin main
             cd backend
-            ${{ secrets.GO_EX_PATH }} mod tidy
+            ${{ secrets.GO_EX_PATH }} install
