@@ -7,8 +7,19 @@ export default function Home() {
   return (
     <div class={tw("h-screen")}>
       <Head>
-        <title>Usuyuki Blog</title>
+        <title>musubineru</title>
         <link rel="stylesheet" href="/n.css" />
+
+        <link
+          rel="apple-touch-icon"
+          type="image/png"
+          href="/img/favicon/apple-touch-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/img/favicon/icon-192x192.png"
+        />
       </Head>
       <div
         class={tw(
@@ -18,23 +29,41 @@ export default function Home() {
         <div class={tw("absolute")}>
           <div class={tw("relative top-4 left-20")}>
             <div class="glass-frame">
-              <p class={"kaisei-decol " + tw("text-2xl text-center mt-20")}>
+              <p
+                class={
+                  "kaisei-decol text-m8u-black" +
+                  tw("text-2xl text-center mt-20")
+                }
+              >
                 サイン
               </p>
             </div>
           </div>
           <div class="glass-frame">
-            <p class={"kaisei-decol " + tw("text-2xl text-center mt-20")}>
-              コサイン
+            <p
+              class={
+                "kaisei-decol " + tw("text-2xl text-center mt-20 text-gray-400")
+              }
+            >
+              コサイン！
             </p>
           </div>
           <div class={tw("relative bottom-4 right-20")}>
             <div class="glass-frame">
-              <p class={"kaisei-decol " + tw("text-2xl text-center mt-20")}>
+              <p
+                class={
+                  "kaisei-decol text-m8u-black " +
+                  tw("text-2xl text-center mt-20")
+                }
+              >
                 ですわ～
               </p>
             </div>
           </div>
+          <div class={"bg-m8u-1 text-m8u-black " + tw("w-20 h-20")}>
+            <p>aa</p>
+          </div>
+          <h2 class="text-m8u-white">あああ</h2>
         </div>
       </div>
     </div>
