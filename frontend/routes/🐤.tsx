@@ -4,6 +4,44 @@ import { tw } from "@twind";
 import Layout from "@🗃/Layout/BasicLayout.tsx";
 import SubmitButton from "@🗃/Form/SubmitButton.tsx";
 import QuestionTextAreaType from "@🗃/Form/QuestionTextArea.tsx";
+import { Handlers } from "$fresh/server.ts";
+
+// export const handler: Handlers<Data> = {
+//   async POST(req, ctx) {
+//     // フォームデータの入力値を取得
+//     const formData = await req.formData();
+//     const title = formData.get("title")?.toString();
+//     const content = formData.get("content")?.toString();
+
+//     // タイトルまたはコンテンツどちらも未入力の場合はバリデーションエラー
+//     if (!title || !content) {
+//       return ctx.render({
+//         error: {
+//           title: title ? "" : "Title is required",
+//           content: content ? "" : "Content is required",
+//         },
+//         title,
+//         content,
+//       });
+//     }
+
+//     const article = {
+//       title,
+//       content,
+//     };
+
+//     // データベースに保存
+//     await createArticle(article);
+
+//     // トップページにリダイレクト
+//     return new Response("", {
+//       status: 303,
+//       headers: {
+//         Location: "/",
+//       },
+//     });
+//   },
+// };
 
 export default function Page() {
   return (
