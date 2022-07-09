@@ -18,7 +18,6 @@ jobs:
           username: ${{ secrets.API_USERNAME }}
           key: ${{ secrets.API_SSH_KEY }}
           port: ${{ secrets.API_PORT }}
-          debug: true
           script: |
-            cd ${{ secrets.SERVER_DEPLOY_DIR }}
+            cd ${{ secrets.API_DIR }}
             git pull origin main
