@@ -6,6 +6,10 @@
   --m8u-3: #baf7ba;
   --m8u-4: #f794c6;
   --m8u-5: #f7eda1;
+  --heder-height: 40px;
+  --footer-height: 100px;
+  --main-padding-top: 20px;
+  --main-max-width: 1200px;
 }
 @font-face {
   font-display: swap;
@@ -16,7 +20,7 @@
 }
 body {
   scroll-behavior: smooth;
-  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   background-color: var(--m8u-black);
   color: var(--m8u-white);
@@ -27,6 +31,32 @@ body {
   background-size: cover;
   background-position: center;
   background-image: url("img/bg/bg.svg"); */
+}
+header {
+  height: var(--heder-height);
+  background-color: var(--m8u-2);
+  color: var(--m8u-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer {
+  height: var(--footer-height);
+  background-color: var(--m8u-5);
+  color: var(--m8u-black);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+main {
+  max-width: var(--main-max-width);
+  min-height: calc(100vh - var(--heder-height) - var(--footer-height));
+  padding-top: var(--main-padding-top);
+}
+.basis-height {
+  height: calc(
+    100vh - var(--main-padding-top) - var(--heder-height) - var(--footer-height)
+  );
 }
 
 .text-m8u-black {

@@ -3,24 +3,6 @@ import { h, PageProps } from "preact";
 import { Head } from "$fresh/src/runtime/head.ts";
 import { tw } from "@twind";
 import { Handlers } from "$fresh/server.ts";
-import { config } from "https://deno.land/x/dotenv/mod.ts";
-// interface User {
-//   login: string;
-//   name: string;
-//   avatar_url: string;
-// }
-
-// export const handler: Handlers<User | null> = {
-//   async GET(_, ctx) {
-//     const { username } = ctx.params;
-//     const resp = await fetch(`https://api.github.com/users/${username}`);
-//     if (resp.status === 404) {
-//       return ctx.render(null);
-//     }
-//     const user: User = await resp.json();
-//     return ctx.render(user);
-//   },
-// };
 
 interface Url {
   hitokoto: string;
