@@ -4,8 +4,7 @@ on:
   pull_request:
     branches:
       - main
-    tags:
-      - "⚙backend"
+    types: [closed]
 
 jobs:
   build:
@@ -19,28 +18,6 @@ jobs:
           username: ${{ secrets.API_USERNAME }}
           key: ${{ secrets.API_SSH_KEY }}
           port: ${{ secrets.API_PORT }}
-          script: whoami
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: yarn install
-        # ssh接続のための接続
-        env:
-          PRIVATE_KEY: ${{ secrets.API_SSH_KEY }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$API_SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh/id_rsa
-          eval $(ssh-agent -s)
-          ssh-add ~/.ssh/id_rsa
-          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-          yarn install
-
-      - name: Run Pull
-        run: |
-          cd ${{ secrets.SERVER_DEPLOY_DIR }}
-          git pull origin main
+          script: |
+            cd ${{ secrets.SERVER_DEPLOY_DIR }}
+            git pull origin main
