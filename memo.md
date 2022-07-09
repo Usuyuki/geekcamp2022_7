@@ -12,6 +12,12 @@ docker-compose exec go go mod tidy
 docker-compose exec go get りんく
 ```
 
+デフォルトでホットリロード。
+
+```
+docker-compose exec go run main.go
+```
+
 # deno 関連
 
 ```
