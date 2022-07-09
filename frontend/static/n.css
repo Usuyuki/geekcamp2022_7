@@ -1,13 +1,36 @@
+:root {
+  --m8u-white: #b4a9a7;
+  --m8u-black: #022028;
+  --m8u-1: #e1f7ac;
+  --m8u-2: #cfc6f7;
+  --m8u-3: #baf7ba;
+  --m8u-4: #f794c6;
+  --m8u-5: #f7eda1;
+}
 body {
   scroll-behavior: smooth;
   width: 100vw;
   min-height: 100vh;
-  background: radial-gradient(#e1f7ac, #baf7ba);
+  background-color: var(--m8u-black);
+  /* background: radial-gradient(#e1f7ac, #baf7ba); */
   /* background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   background-position: center;
   background-image: url("img/bg/bg.svg"); */
+}
+
+.text-m8u-black {
+  color: var(--m8u-black);
+}
+.text-m8u-white {
+  color: var(--m8u-white);
+}
+.text-m8u-1 {
+  color: var(--m8u-1);
+}
+.bg-m8u-1 {
+  background-color: var(--m8u-1);
 }
 
 @font-face {
