@@ -1,8 +1,8 @@
 /** @jsx h */
 import { h, ReactNode } from "preact";
 import { Head } from "$fresh/src/runtime/head.ts";
-import Footer from "@/Basis/Footer.tsx";
-import Header from "@/Basis/Header.tsx";
+import Footer from "@🗃/Basis/Footer.tsx";
+import Header from "@🗃/Basis/Header.tsx";
 import { tw } from "@twind";
 interface LayoutProps {
   title: string;

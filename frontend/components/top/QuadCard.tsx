@@ -8,7 +8,7 @@ interface QuadCardType {
 
 export default function QuadCard({ target }: QuadCardType) {
   return (
-    <div class={tw("w-1/2")}>
+    <div class={tw("md:w-1/2")}>
       <div class={tw("flex justify-center")}>
         <div class="glass-frame">
           <p class={tw("text-xl text-center")}>

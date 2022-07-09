@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
-import Layout from "@/Layout/BasicLayout.tsx";
-import ApiError from "@/Error/ApiError.tsx";
+import Layout from "@🗃/Layout/BasicLayout.tsx";
+import ApiError from "@🗃/Error/ApiError.tsx";
 interface ErrorMessages {
   statusCode: number;
   title: string;

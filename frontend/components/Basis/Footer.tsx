@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <p class={tw("text-xs mt-2 mb-2")}>copyright 2022 usuyuki</p>
-      <div class={tw("flex justify-center  items-center")}>
+      <div class={tw("flex justify-center  items-center flex-col md:flex-row")}>
         <a class={tw("px-2 py-2")} href="/about">
           特徴
         </a>
@@ -26,6 +26,7 @@ export default function Footer() {
         href="https://github.com/Usuyuki/musubineru"
         target="_blank"
         rel="noopener"
+        class={tw("mb-2")}
       >
         GitHub
       </a>
