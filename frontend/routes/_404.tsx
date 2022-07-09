@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { UnknownPageProps } from "$fresh/server.ts";
-import Layout from "@/Layout/errorLayout.tsx";
+import Layout from "@/Layout/ErrorLayout.tsx";
 export default function NotFoundPage({ url }: UnknownPageProps) {
   return (
     <Layout

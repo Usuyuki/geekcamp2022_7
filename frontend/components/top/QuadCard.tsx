@@ -3,16 +3,18 @@ import { h } from "preact";
 import { tw } from "@twind";
 
 interface QuadCardType {
-  sentence: string;
+  target: string;
 }
 
-export default function QuadCard({ sentence }: QuadCardType) {
+export default function QuadCard({ target }: QuadCardType) {
   return (
-    <div class={tw("w-1/2 px-2 my-12 ")}>
+    <div class={tw("w-1/2")}>
       <div class={tw("flex justify-center")}>
         <div class="glass-frame">
-          <p class={"kaisei-decol text-m8u-black" + tw("text-2xl text-center")}>
-            {sentence}
+          <p class={tw("text-xl text-center")}>
+            <span class={tw("text-4xl text-m8u_2")}>{target}</span>から
+            <br />
+            候補を取り寄せます。
           </p>
         </div>
       </div>
