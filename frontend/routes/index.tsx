@@ -66,7 +66,7 @@ export default function Page({ data }: PageProps<Url | null>) {
         {data.hitokoto}
       </div>
       <div class={tw("flex justify-center mb-20")}>
-        <NormalLinkButton title="やってみる" url="/🐤" />
+        <NormalLinkButton title="やってみる" url="/duck" />
       </div>
     </Layout>
   );
