@@ -16,10 +16,13 @@ https://color.adobe.com/ja/create/color-wheel
 二重分割補色
 <img width="1594" alt="image" src="https://user-images.githubusercontent.com/63891531/177327875-bde8f267-49bc-4fd5-afb0-94939bc344d9.png">
 
+白黒は PALETTABLE で調合  
+https://www.palettable.io/022028-FCFCFC
+
 ## 背景
 
-https://app.heazy.studio/
-で生成
+~~https://app.heazy.studio/
+で生成~~
 
 ## グラスモーフィズム
 

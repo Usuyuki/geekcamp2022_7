@@ -1,5 +1,5 @@
 :root {
-  --m8u-white: #b4a9a7;
+  --m8u-white: #fcfcfc;
   --m8u-black: #022028;
   --m8u-1: #e1f7ac;
   --m8u-2: #cfc6f7;
@@ -7,11 +7,20 @@
   --m8u-4: #f794c6;
   --m8u-5: #f7eda1;
 }
+@font-face {
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Kaisei Decol";
+  src: url("/fonts/KaiseiDecol-Medium.ttf") format("truetype");
+}
 body {
   scroll-behavior: smooth;
   width: 100vw;
   min-height: 100vh;
   background-color: var(--m8u-black);
+  color: var(--m8u-white);
+  font-family: "Kaisei Decol";
   /* background: radial-gradient(#e1f7ac, #baf7ba); */
   /* background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -29,17 +38,13 @@ body {
 .text-m8u-1 {
   color: var(--m8u-1);
 }
+.bg-m8u-white {
+  background-color: var(--m8u-white);
+}
 .bg-m8u-1 {
   background-color: var(--m8u-1);
 }
 
-@font-face {
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-  font-family: "Kaisei Decol";
-  src: url("/fonts/KaiseiDecol-Medium.ttf") format("truetype");
-}
 .kaisei-decol {
   font-family: "Kaisei Decol";
 }
@@ -53,4 +58,48 @@ body {
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.color-shadow-box {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  /* Required properties */
+  position: relative;
+  background: white;
+
+  /* Use  your own styles here */
+  margin: 45px;
+  width: 250px;
+  height: 123px;
+}
+
+.color-shadow-box:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #cfc6f7 0%, #f794c6 100%);
+  transform: translate3d(0px, 20px, 0) scale(0.95);
+  filter: blur(20px);
+  opacity: var(0.7);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+.color-shadow-box::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
 }
