@@ -8,11 +8,13 @@ export const config: Configuration = {
   mode: "silent",
   theme: {
     colors: {
-      musubiberu_1: "#e1f7ac",
-      musubiberu_2: "#cfc6f7",
-      musubiberu_3: "#baf7ba",
-      musubiberu_4: "#f794c6",
-      musubiberu_5: "#f7eda1",
+      m8u_white: "#fcfcfc",
+      m8u_black: "#022028",
+      m8u_1: "#e1f7ac",
+      m8u_2: "#cfc6f7",
+      m8u_3: "#baf7ba",
+      m8u_4: "#f794c6",
+      m8u_5: "#f7eda1",
     },
   },
 };
