@@ -87,7 +87,7 @@ export default function Page({ data }: PageProps<Url | null>) {
             </p>
           </div>
           <div class={tw("relative bottom-4 right-20")}>
-            <div class="glass-frame">
+            <div class="color-shadow-box">
               <p
                 class={
                   "kaisei-decol text-m8u-black " +
