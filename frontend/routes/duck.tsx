@@ -123,6 +123,9 @@ export default function Page({
         </div>
       </form>
       {data?.result ? <ThinkResult data={data} /> : ""}
+      <p class={tw("text-center my-2 mx-2")}>
+        フェッチ結果:{data?.result ? data.result : "未実行"}
+      </p>
     </Layout>
   );
 }
