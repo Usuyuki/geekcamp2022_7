@@ -1,0 +1,31 @@
+package fullTextSearch
+
+import(
+	"bufio"
+    "fmt"
+    "golang.org/x/text/encoding/japanese"
+    "io"
+    "os"
+)
+func ReadFromTxt(fileName string)(string) {
+	fp, err := os.Open(fileName)
+    if err != nil {
+        panic(err)
+    }
+    defer fp.Close()
+
+    decoder := japanese.ShiftJIS.NewDecoder()
+    reader := bufio.NewReader(decoder.Reader(fp))
+    var lines string
+    for {
+        line, _, err := reader.ReadLine()
+        if err == io.EOF {
+            break
+        } else if err != nil {
+            panic(err)
+        }
+        fmt.Println(string(line))
+        lines = lines+line
+    }
+    return lines
+}
