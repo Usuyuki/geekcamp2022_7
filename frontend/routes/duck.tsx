@@ -1,49 +1,86 @@
 /** @jsx h */
-import { h } from "preact";
+import { h, PageProps } from "preact";
 import { tw } from "@twind";
 import Layout from "@🗃/Layout/BasicLayout.tsx";
 import SubmitButton from "@🗃/Form/SubmitButton.tsx";
 import QuestionTextAreaType from "@🗃/Form/QuestionTextArea.tsx";
 import { Handlers } from "$fresh/server.ts";
+import ApiError from "@🗃/Error/ApiError.tsx";
+import { validate } from "@⚙/validate/questionValidate.ts";
+import { ResultType } from "@凹/runReturnType.ts";
+import RunResult from "@🗃/Result/RunResult.tsx";
+export interface Data {
+  /** バリデーションエラー情報 */
+  error: {
+    what: string;
+    why: string;
+    how: string;
+  };
+  what?: string;
+  why?: string;
+  how?: string;
+}
 
-// export const handler: Handlers<Data> = {
-//   async POST(req, ctx) {
-//     // フォームデータの入力値を取得
-//     const formData = await req.formData();
-//     const title = formData.get("title")?.toString();
-//     const content = formData.get("content")?.toString();
+export const handler: Handlers<Data> = {
+  async POST(req, ctx) {
+    // フォームデータの入力値を取得
+    const formData = await req.formData();
+    const what = formData.get("what")?.toString();
+    const why = formData.get("why")?.toString();
+    const how = formData.get("how")?.toString();
 
-//     // タイトルまたはコンテンツどちらも未入力の場合はバリデーションエラー
-//     if (!title || !content) {
-//       return ctx.render({
-//         error: {
-//           title: title ? "" : "Title is required",
-//           content: content ? "" : "Content is required",
-//         },
-//         title,
-//         content,
-//       });
-//     }
+    const whatValidate = validate(what);
+    const whyValidate = validate(why);
+    const howValidate = validate(how);
+    //1つでもたりてなかったら弾く
+    if (!(whatValidate == "OK" && whyValidate == "OK" && howValidate == "OK")) {
+      return ctx.render({
+        error: {
+          what: what ? "" : whatValidate,
+          why: why ? "" : whyValidate,
+          how: how ? "" : howValidate,
+        },
+        what,
+        why,
+        how,
+      });
+    }
 
-//     const article = {
-//       title,
-//       content,
-//     };
+    const question = {
+      what: what,
+      why: why,
+      how: how,
+    };
 
-//     // データベースに保存
-//     await createArticle(article);
+    // データベースに保存
+    const resp = await fetch(Deno.env.get("API_URL") + "/run", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(question),
+    });
 
-//     // トップページにリダイレクト
-//     return new Response("", {
-//       status: 303,
-//       headers: {
-//         Location: "/",
-//       },
-//     });
-//   },
-// };
+    if (resp.status === 404) {
+      return ctx.render(null);
+    }
 
-export default function Page() {
+    const result: ResultType = await resp.json();
+    return ctx.render(result);
+  },
+};
+
+export default function Page({
+  data,
+}: PageProps<Data | ResultType | null | undefined>) {
+  if (typeof data == null) {
+    return (
+      <ApiError
+        title="APIエラー"
+        details="APIとのやりとりにおいてエラーが生じました。"
+      />
+    );
+  }
   return (
     <Layout title="top">
       <div class={tw("flex justify-center flex-col")}>
@@ -60,46 +97,33 @@ export default function Page() {
           <QuestionTextAreaType
             title="どんなプロジェクトを作ろうと思ってますの？"
             name="what"
+            value={data?.what}
           />
+          {data?.error?.what && (
+            <p class={tw("text-m8u_4 text-sm")}>{data.error.what}</p>
+          )}
           <QuestionTextAreaType
             title="プロダクトを作ろうと思っている理由を教えてくださいまし"
             name="why"
+            value={data?.why}
           />
+          {data?.error?.why && (
+            <p class={tw("text-m8u_4 text-sm")}>{data.error.why}</p>
+          )}
           <QuestionTextAreaType
             title="どうやってプロダクトを作ろうと思ってますの？"
             name="how"
+            value={data?.how}
           />
+          {data?.error?.how && (
+            <p class={tw("text-m8u_4 text-sm")}>{data.error.how}</p>
+          )}
         </div>
         <div class={tw("flex justify-center mt-8")}>
           <SubmitButton title="名前の検討をする" />
         </div>
       </form>
+      {typeof data == ResultType ? <ResultType data={data} /> : null}
     </Layout>
   );
 }
-
-// export const handler: Handlers = {
-//   GET(req, ctx) {
-//     const { socket, response } = Deno.upgradeWebSocket(req);
-//     if (!socket) throw new Error("unreachable");
-
-//     const uuid = ctx.params["uuid"];
-//     if (typeof BroadcastChannel === "undefined") {
-//       socket.onmessage = (ev) => {
-//         socket.send(ev.data);
-//       };
-//       return response;
-//     }
-//     const channel = new BroadcastChannel(uuid);
-//     channel.onmessage = (ev) => {
-//       socket.send(ev.data);
-//     };
-//     socket.onmessage = (ev) => {
-//       channel.postMessage(ev.data);
-//     };
-//     socket.onclose = () => {
-//       channel.close();
-//     };
-//     return response;
-//   },
-// };

@@ -8,6 +8,8 @@
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "@🗃/": "./components/",
+    "@凹/": "./types/",
+    "@⚙/": "./libs/",
     "@🏝/": "./islands/"
   }
 }
