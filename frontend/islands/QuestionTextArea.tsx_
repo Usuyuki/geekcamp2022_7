@@ -17,6 +17,15 @@ export default function QuestionTextArea({
   value,
   error,
 }: QuestionTextAreaType) {
+  // コンテンツの入力値を保持する
+  const [originValue, setValueValue] = useState(value);
+  const [originError, setErrorValue] = useState(error);
+
+  const handleChange = (e: Event) => {
+    const target = e.target as HTMLTextAreaElement;
+    setErrorValue(validate(target.value));
+    setValueValue(target.value);
+  };
   return (
     <div class={tw("mt-4")}>
       <label class={tw("text-xl")} htmlFor={name + "Form"}>
@@ -27,9 +36,10 @@ export default function QuestionTextArea({
         rows={5}
         class={tw("w-full p-2 rounded-md bg-m8u_white text-m8u_black")}
         name={name}
-        value={value}
+        value={originValue}
+        onChange={handleChange}
       />
-      <p class={tw("text-m8u_4 text-sm")}>{error}</p>
+      <p class={tw("text-m8u_4 text-sm")}>{originError}</p>
     </div>
   );
 }
