@@ -1,4 +1,5 @@
 export interface ResultType {
+  result: string;
   what: string;
   why: string;
   how: string;

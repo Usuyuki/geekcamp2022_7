@@ -3,8 +3,7 @@ export const validate = (value: string): string => {
     return "内容を教えてくださいまし";
   }
   if (value.length < 20) {
-    console.log(value.length);
     return "もう少し詳しく教えてくださいまし";
   }
-  return "OK";
+  return "ご入力ありがとうございます";
 };

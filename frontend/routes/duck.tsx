@@ -3,11 +3,11 @@ import { h, PageProps } from "preact";
 import { tw } from "@twind";
 import Layout from "@🗃/Layout/BasicLayout.tsx";
 import SubmitButton from "@🗃/Form/SubmitButton.tsx";
-import QuestionTextAreaType from "@🗃/Form/QuestionTextArea.tsx";
+import QuestionTextArea from "@🗃/Form/QuestionTextArea.tsx";
 import { Handlers } from "$fresh/server.ts";
 import ApiError from "@🗃/Error/ApiError.tsx";
 import { validate } from "@⚙/validate/questionValidate.ts";
-import { ResultType } from "@凹/runReturnType.ts";
+import { type ResultType } from "@凹/runReturnType.ts";
 import RunResult from "@🗃/Result/RunResult.tsx";
 export interface Data {
   /** バリデーションエラー情報 */
@@ -33,12 +33,18 @@ export const handler: Handlers<Data> = {
     const whyValidate = validate(why);
     const howValidate = validate(how);
     //1つでもたりてなかったら弾く
-    if (!(whatValidate == "OK" && whyValidate == "OK" && howValidate == "OK")) {
+    if (
+      !(
+        whatValidate == "ご入力ありがとうございます" &&
+        whyValidate == "ご入力ありがとうございます" &&
+        howValidate == "ご入力ありがとうございます"
+      )
+    ) {
       return ctx.render({
         error: {
-          what: what ? "" : whatValidate,
-          why: why ? "" : whyValidate,
-          how: how ? "" : howValidate,
+          what: whatValidate,
+          why: whyValidate,
+          how: howValidate,
         },
         what,
         why,
@@ -94,36 +100,30 @@ export default function Page({
       </div>
       <form class={tw("rounded-xl p-5  mt-8")} method="POST">
         <div class={tw("flex flex-col ")}>
-          <QuestionTextAreaType
+          <QuestionTextArea
             title="どんなプロジェクトを作ろうと思ってますの？"
             name="what"
             value={data?.what}
+            error={data?.error?.what}
           />
-          {data?.error?.what && (
-            <p class={tw("text-m8u_4 text-sm")}>{data.error.what}</p>
-          )}
-          <QuestionTextAreaType
+          <QuestionTextArea
             title="プロダクトを作ろうと思っている理由を教えてくださいまし"
             name="why"
             value={data?.why}
+            error={data?.error?.why}
           />
-          {data?.error?.why && (
-            <p class={tw("text-m8u_4 text-sm")}>{data.error.why}</p>
-          )}
-          <QuestionTextAreaType
+          <QuestionTextArea
             title="どうやってプロダクトを作ろうと思ってますの？"
             name="how"
             value={data?.how}
+            error={data?.error?.how}
           />
-          {data?.error?.how && (
-            <p class={tw("text-m8u_4 text-sm")}>{data.error.how}</p>
-          )}
         </div>
         <div class={tw("flex justify-center mt-8")}>
           <SubmitButton title="名前の検討をする" />
         </div>
       </form>
-      {typeof data == ResultType ? <ResultType data={data} /> : null}
+      {data?.result ? <RunResult data={data} /> : ""}
     </Layout>
   );
 }
