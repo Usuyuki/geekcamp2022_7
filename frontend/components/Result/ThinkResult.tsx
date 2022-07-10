@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { ResultType } from "@凹/thinkReturnType.ts";
+import { ResultType } from "@凹/thinkResponseType.ts";
 export default function ThinkResult(data: ResultType) {
   return (
     <div class={tw("border border-m8u_2 rounded-2xl m-4 p-2")}>

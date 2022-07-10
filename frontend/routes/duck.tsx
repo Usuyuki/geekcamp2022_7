@@ -7,7 +7,7 @@ import QuestionTextArea from "@🗃/Form/QuestionTextArea.tsx";
 import { Handlers } from "$fresh/server.ts";
 import ApiError from "@🗃/Error/ApiError.tsx";
 import { validate } from "@⚙/validate/questionValidate.ts";
-import { type ResultType } from "@凹/thinkReturnType.ts";
+import { type ResultType } from "@凹/thinkResponseType.ts";
 import ThinkResult from "@🗃/Result/ThinkResult.tsx";
 export interface Data {
   /** バリデーションエラー情報 */

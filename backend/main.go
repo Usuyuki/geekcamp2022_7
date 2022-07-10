@@ -8,7 +8,9 @@ import (
 
 func main() {
     r := gin.Default()
-	r = middleware.AllowCORS(r)
-	r = route.GetRouter(r)
+	// ミドルウェア
+	middleware.AllowCORS(r)
+	// ルーティング
+	route.GetRouter(r)
     r.Run(":8001")
 }

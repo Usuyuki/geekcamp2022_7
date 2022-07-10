@@ -18,6 +18,10 @@ docker-compose exec go get りんく
 docker-compose exec go run main.go
 ```
 
+## ルーティング参考
+
+[gin を使って MVC モデルの Web アプリを作成する](https://zenn.dev/ajapa/articles/65b9934db18396))
+
 # deno 関連
 
 ```
