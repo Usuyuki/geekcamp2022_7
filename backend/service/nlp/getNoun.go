@@ -1,39 +1,36 @@
-package service;nlp
+package nlp
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/ikawaha/kagome-dict/ipa"
 	"github.com/ikawaha/kagome/v2/tokenizer"
+
+	"backend/typefile"
+	// "fmt"
 )
-func NlpTest(words string)(array){
+
+func GetNoun(sentence string)(typefile.MorphologicalResponse){
+	var mr typefile.MorphologicalResponse
+
 	t, err := tokenizer.New(ipa.Dict(), tokenizer.OmitBosEos())
 	if err != nil {
 		panic(err)
 	}
-	tokens := t.Tokenize(words)
+	tokens := t.Tokenize(sentence)
 
-	return tokens
-	
-}
+    mr.Nouns = map[string]int{}
+    for _, token := range tokens {
+        features := token.Features()
+        // 名詞だけ残す
+        if len(features) == 0 || features[0] != "名詞" {
+            continue
+        }
+        _, ok := mr.Nouns[token.Surface]
+        if ok {
+            mr.Nouns[token.Surface]++
+        } else {
+            mr.Nouns[token.Surface] = 1
+        }
+    }
 
-func nlp() {
-	t, err := tokenizer.New(ipa.Dict(), tokenizer.OmitBosEos())
-	if err != nil {
-		panic(err)
-	}
-	
-	// wakati
-	fmt.Println("---wakati---")
-	seg := t.Wakati("しぐれうい先生を推しています。")
-	fmt.Println(seg)
-
-	// tokenize
-	fmt.Println("---tokenize---")
-	tokens := t.Tokenize("最近のVTuber事情は興味深い")
-	for _, token := range tokens {
-		features := strings.Join(token.Features(), ",")
-		fmt.Printf("%s\t%v\n", token.Surface, features)
-	}
+    return mr
 }

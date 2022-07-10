@@ -18,6 +18,12 @@ docker-compose exec go get りんく
 docker-compose exec go run main.go
 ```
 
+## nlp 関連
+
+[kagome doc](https://zenn.dev/ikawaha/books/kagome-v2-japanese-tokenizer/viewer/tokenization)
+
+[kagome を使った実装例](https://qiita.com/akisame338/items/60aa572e48de0881153f)
+
 ## ルーティング参考
 
 [gin を使って MVC モデルの Web アプリを作成する](https://zenn.dev/ajapa/articles/65b9934db18396))

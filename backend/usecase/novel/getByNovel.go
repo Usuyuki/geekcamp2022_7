@@ -2,10 +2,16 @@ package novel
 
 import(
 	"backend/typefile/model"
+	// "backend/domain"
+	"fmt"
 )
 
-func GetByNovel()([]model.Novel){
+func GetByNovel(nouns map[string]int)([]model.Novel){
 	var novel model.Novel
+	for key,value :=range nouns{
+		fmt.Print("key:",key,"value:",value)
+	}
+
 	novel.OriginWord = "しょうせつ"
 	novel.Author = "しょうせつ"
 	novel.Title = "しょうせつ"
