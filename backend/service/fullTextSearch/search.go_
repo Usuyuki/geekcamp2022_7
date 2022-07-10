@@ -1,0 +1,106 @@
+package fullTextSearch
+import(
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/blugelabs/bluge"
+	segment "github.com/blugelabs/bluge_segment_api"
+	"github.com/ikawaha/blugeplugin/analysis/lang/ja"
+)
+
+func searchFromNovel(queryWord string) {
+	// サンプルなので in memory で済ませる
+	config := bluge.InMemoryOnlyConfig()
+
+	// index writer を用意する
+	w, err := bluge.OpenWriter(config)
+	if err != nil {
+		log.Fatalf("error opening writer: %v", err)
+	}
+	defer w.Close()
+
+	docs := NewDocuments()
+
+	// indexing
+	for _, doc := range docs {
+		doc := doc
+		if err := w.Update(doc.ID(), doc); err != nil {
+			log.Fatalf("error updating document: %v", err)
+		}
+		// 表示
+		fmt.Printf("indexed document with id:%s\n", doc.ID())
+		doc.EachField(func(field segment.Field) {
+			fmt.Printf("\t%s: %s\n", field.Name(), field.Value())
+		})
+	}
+
+	// index reader を用意する
+	r, err := w.Reader()
+	if err != nil {
+		log.Fatalf("error getting index reader: %v", err)
+	}
+	defer r.Close()
+
+	// クエリ
+	q := queryWord
+	query := bluge.NewMatchQuery(q).SetAnalyzer(ja.Analyzer()).SetField("body")
+	req := bluge.NewTopNSearch(10, query).WithStandardAggregations()
+	fmt.Printf("query: search field %q, value %q\n", query.Field(), q)
+
+	// search
+	ite, err := r.Search(context.Background(), req)
+	if err != nil {
+		log.Fatalf("error executing search: %v", err)
+	}
+	// 検索結果
+	for {
+		match, err := ite.Next()
+		if err != nil {
+			log.Fatalf("error iterator document matches: %v", err)
+		}
+		if match == nil {
+			break
+		}
+		if err := match.VisitStoredFields(func(field string, value []byte) bool {
+			fmt.Printf("%s: %q\n", field, string(value))
+			return true
+		}); err != nil {
+			log.Fatalf("error loading stored fields: %v", err)
+		}
+	}
+}
+
+
+
+func NewDocuments() []*bluge.Document {
+	docs := []struct {
+		ID     string
+		Author string
+		Text   string
+	}{
+		{
+			ID:     "こころ",
+			Author: "夏目漱石",
+			Text:   ReadFromTxt("resource/kokoro.txt"),
+		},
+		{
+			ID:     "中島敦",
+			Author: "山月記",
+			Text:   ReadFromTxt("resource/sangetsuki.txt"),
+		},
+		{
+			ID:     "女生徒",
+			Author: "太宰治",
+			Text:   ReadFromTxt("resource/joseito.txt"),
+		},
+	}
+	var ret []*bluge.Document
+	for _, v := range docs {
+		auth := bluge.NewTextField("author", v.Author).WithAnalyzer(ja.Analyzer())
+		body := bluge.NewTextField("body", v.Text).WithAnalyzer(ja.Analyzer())
+		doc := bluge.NewDocument(v.ID).AddField(auth).AddField(body)
+		ret = append(ret, doc)
+	}
+	return ret
+}

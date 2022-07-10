@@ -24,6 +24,8 @@ docker-compose exec go run main.go
 
 [kagome を使った実装例](https://qiita.com/akisame338/items/60aa572e48de0881153f)
 
+[全文検索](https://zenn.dev/ikawaha/articles/20201230-84b042603ccbbce645d5)
+
 ## ルーティング参考
 
 [gin を使って MVC モデルの Web アプリを作成する](https://zenn.dev/ajapa/articles/65b9934db18396))
