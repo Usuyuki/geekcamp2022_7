@@ -1,4 +1,4 @@
-package nlp
+package service;nlp
 
 import (
 	"fmt"

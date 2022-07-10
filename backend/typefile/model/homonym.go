@@ -1,7 +1,8 @@
-package typefile
+package model
 
-type Synonyms struct {
+type Homonym struct {
 	OriginWord string
+	Kana string
 	Content string
 	Reason string
 }

@@ -1,9 +1,8 @@
-package typefile
+package model
 
-type Novel struct {
+type Waka struct {
 	OriginWord string
 	Author string
-	Kana string
 	Content string
 	Reason string
 }

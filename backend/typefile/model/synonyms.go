@@ -1,8 +1,7 @@
-package typefile
+package model
 
-type Waka struct {
+type Synonyms struct {
 	OriginWord string
-	Author string
 	Content string
 	Reason string
 }
