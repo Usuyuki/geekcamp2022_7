@@ -65,14 +65,12 @@ export const handler: Handlers<Data> = {
       },
       body: JSON.stringify(question),
     });
-    console.log(JSON.stringify(question));
 
     if (resp.status === 404) {
       return ctx.render(null);
     }
 
     const result: ResultType = await resp.json();
-    console.log(result);
     return ctx.render(result);
   },
 };

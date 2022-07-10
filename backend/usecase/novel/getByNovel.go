@@ -16,6 +16,7 @@ func GetByNovel(nouns map[string]int)([]model.Novel){
 	novel.Author = "しょうせつ"
 	novel.Title = "しょうせつ"
 	novel.Content = "しょうせつは、赤ちゃんです。"
+	novel.Reason = "しょうせつは、赤ちゃんです。"
 
 	novels := []model.Novel{novel}
 
