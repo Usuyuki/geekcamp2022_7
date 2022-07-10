@@ -7,23 +7,22 @@ import ApiError from "@🗃/Error/ApiError.tsx";
 import QuadCard from "@🗃/top/QuadCard.tsx";
 import TopCard from "@🗃/top/TopCard.tsx";
 import NormalLinkButton from "@🗃/Button/NormalLinkButton.tsx";
-interface Url {
-  hitokoto: string;
-  message: string;
+interface PingType {
+  status: string;
 }
 
-export const handler: Handlers<Url | null> = {
+export const handler: Handlers<PingType | null> = {
   async GET(_, ctx) {
-    const resp = await fetch(Deno.env.get("API_URL"));
+    const resp = await fetch(Deno.env.get("API_URL") + "/ping");
     if (resp.status === 404) {
       return ctx.render(null);
     }
-    const url: Url = await resp.json();
+    const url: PingType = await resp.json();
     return ctx.render(url);
   },
 };
 
-export default function Page({ data }: PageProps<Url | null>) {
+export default function Page({ data }: PageProps<PingType | null>) {
   if (!data) {
     return (
       <ApiError
@@ -61,13 +60,12 @@ export default function Page({ data }: PageProps<Url | null>) {
           </TopCard>
         </div>
       </div>
-      <div>
-        {data.message}
-        {data.hitokoto}
-      </div>
       <div class={tw("flex justify-center mb-20")}>
         <NormalLinkButton title="やってみる" url="/duck" />
       </div>
+      <p class={tw("text-center text-xs my-12 mx-2")}>
+        API Status:{data.status}
+      </p>
     </Layout>
   );
 }
