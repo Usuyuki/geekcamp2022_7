@@ -13,11 +13,18 @@ func ThinkAction(c *gin.Context) {
 	var data typefile.ThinkResponseType
 	// var mr typefile.MorphologicalResponse
 	var nouns map[string]int
+
+	var response typefile.ThinkRequestType
+	e := c.BindJSON(&response)
+	if e == nil {
+		data.What =response.What
+		data.Why = response.Why
+		data.How = response.How
+		data.Result = "success"
+	}else{
+		data.Result = "fail"
+	}
 	
-	data.What =c.PostForm("what")
-	data.Why = c.PostForm("why")
-	data.How = c.PostForm("how")
-	data.Result = "success"
 	
 	
 	//もらった文章の解析(名詞の配列だけ引っ張り出す)

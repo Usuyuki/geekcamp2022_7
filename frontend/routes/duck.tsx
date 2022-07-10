@@ -58,7 +58,6 @@ export const handler: Handlers<Data> = {
       how: how,
     };
 
-    // データベースに保存
     const resp = await fetch(Deno.env.get("API_URL") + "/think", {
       method: "POST",
       headers: {
@@ -66,12 +65,14 @@ export const handler: Handlers<Data> = {
       },
       body: JSON.stringify(question),
     });
+    console.log(JSON.stringify(question));
 
     if (resp.status === 404) {
       return ctx.render(null);
     }
 
     const result: ResultType = await resp.json();
+    console.log(result);
     return ctx.render(result);
   },
 };
