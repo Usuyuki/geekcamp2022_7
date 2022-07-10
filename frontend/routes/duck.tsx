@@ -7,8 +7,8 @@ import QuestionTextArea from "@🗃/Form/QuestionTextArea.tsx";
 import { Handlers } from "$fresh/server.ts";
 import ApiError from "@🗃/Error/ApiError.tsx";
 import { validate } from "@⚙/validate/questionValidate.ts";
-import { type ResultType } from "@凹/runReturnType.ts";
-import RunResult from "@🗃/Result/RunResult.tsx";
+import { type ResultType } from "@凹/thinkReturnType.ts";
+import ThinkResult from "@🗃/Result/ThinkResult.tsx";
 export interface Data {
   /** バリデーションエラー情報 */
   error: {
@@ -59,7 +59,7 @@ export const handler: Handlers<Data> = {
     };
 
     // データベースに保存
-    const resp = await fetch(Deno.env.get("API_URL") + "/run", {
+    const resp = await fetch(Deno.env.get("API_URL") + "/think", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +123,7 @@ export default function Page({
           <SubmitButton title="名前の検討をする" />
         </div>
       </form>
-      {data?.result ? <RunResult data={data} /> : ""}
+      {data?.result ? <ThinkResult data={data} /> : ""}
     </Layout>
   );
 }
