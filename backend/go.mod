@@ -1,4 +1,4 @@
-module github.com/Usuyuki/musubineru
+module backend
 
 go 1.18
 
