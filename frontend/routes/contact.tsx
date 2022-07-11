@@ -1,43 +1,21 @@
 /** @jsx h */
 import { h } from "preact";
-import { Head } from "$fresh/src/runtime/head.ts";
 import { tw } from "@twind";
+import Layout from "@🗃/Layout/BasicLayout.tsx";
+import CSCard from "@🗃/Card/CSCard.tsx";
 
 export default function Page() {
   return (
-    <div class={tw("h-screen") + "bg-m8u-white"}>
-      <Head>
-        <title>musubineru</title>
-        <link rel="stylesheet" href="/n.css" />
-
-        <link
-          rel="apple-touch-icon"
-          type="image/png"
-          href="/img/favicon/apple-touch-icon-180x180.png"
+    <Layout title="contact">
+      <h1 class={tw("text-center mx-2 mt-10 mb-2 text-2xl")}>お問い合わせ</h1>
+      <div class={tw("flex items-center justify-center flex-wrap")}>
+        <CSCard
+          title="お問い合わせフォーム"
+          url="https://forms.gle/3LYcZzydWGsgmy1a8"
         />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/img/favicon/icon-192x192.png"
-        />
-      </Head>
-      <div class={tw("flex justify-center items-center flex-row")}>
-        <div class="color-shadow-box">
-          <a
-            href="https://github.com/Usuyuki/musubineru"
-            target="_blank"
-            rel="noopener"
-          >
-            <p
-              class={
-                "kaisei-decol text-m8u-black " + tw("text-2xl text-center")
-              }
-            >
-              ソースコード
-            </p>
-          </a>
-        </div>
+        <CSCard title="作者Twitter" url="https://twitter.com/usuyuki26" />
+        <CSCard title="作者GitHub" url="https://github.com/Usuyuki" />
       </div>
-    </div>
+    </Layout>
   );
 }
