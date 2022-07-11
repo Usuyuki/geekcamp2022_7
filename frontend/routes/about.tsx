@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <Layout title="contact">
       <h1 class={tw("text-center mx-2 mt-10 mb-2 text-2xl")}>
-        このサイトについて
+        むすびねるとは？
       </h1>
       <div class={tw("flex items-center justify-center flex-col ")}>
         <DescCard title="開発経緯" icon="science">

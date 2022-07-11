@@ -7,7 +7,7 @@ export default function Footer() {
       <p class={tw("text-xs mt-2 mb-2")}>copyright 2022 usuyuki</p>
       <div class={tw("flex justify-center  items-center flex-col md:flex-row")}>
         <a class={tw("px-2 py-2")} href="/about">
-          特徴
+          むすびねるについて
         </a>
         <a class={tw("px-2 py-2")} href="/terms">
           利用規約

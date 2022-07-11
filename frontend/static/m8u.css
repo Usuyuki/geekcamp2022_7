@@ -65,6 +65,19 @@ body {
   background-size: cover;
   background-position: center;
   background-image: url("img/bg/bg.svg"); */
+
+  /* カウンター */
+  counter-reset: tNumber;
+  counter-reset: pNumber;
+}
+
+.term-counter h2:before {
+  counter-increment: tNumber;
+  content: "第" counter(tNumber) "条 ";
+}
+.pp-counter h2:before {
+  counter-increment: pNumber;
+  content: "第" counter(pNumber) "条 ";
 }
 header {
   height: var(--heder-height);
