@@ -87,7 +87,7 @@ export default function Page({
     );
   }
   return (
-    <Layout title="top">
+    <Layout title="duck">
       <div class={tw("flex justify-center flex-col")}>
         <img
           class={tw("animate-pulse object-contain w-12 h-12 rotate-12 mx-auto")}
