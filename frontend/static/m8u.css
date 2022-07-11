@@ -189,3 +189,17 @@ main {
 .quad-card-wrapper {
   max-width: 1100px;
 }
+
+.desc-card {
+  width: 600px;
+  /* border: 1px solid var(--m8u-3); */
+  margin: 6px 6px;
+  padding: 4px 4px;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 640px) {
+  .desc-card {
+    width: 300px;
+  }
+}
