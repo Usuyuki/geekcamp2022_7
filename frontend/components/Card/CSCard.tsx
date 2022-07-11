@@ -12,7 +12,11 @@ export default function CSCard({ title, url }: CSCardType) {
     <div class="color-shadow-box">
       <a
         href={url}
-        class={tw("text-2xl text-center px-2 hover:text-m8u_2 duration-500")}
+        target="_blank"
+        rel="noopener"
+        class={tw(
+          "text-2xl text-center px-2 hover:text-m8u_2 duration-500 text-m8u_black"
+        )}
       >
         {title}
       </a>
