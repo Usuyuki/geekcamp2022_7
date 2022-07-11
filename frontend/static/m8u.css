@@ -67,17 +67,13 @@ body {
   background-image: url("img/bg/bg.svg"); */
 
   /* カウンター */
-  counter-reset: tNumber;
-  counter-reset: pNumber;
+  counter-reset: number;
 }
-
-.term-counter h2:before {
-  counter-increment: tNumber;
-  content: "第" counter(tNumber) "条 ";
+.counter-wrapper .desc-card {
+  counter-increment: number;
 }
-.pp-counter h2:before {
-  counter-increment: pNumber;
-  content: "第" counter(pNumber) "条 ";
+.counter-wrapper .desc-card > h2:before {
+  content: "第" counter(number) "条 ";
 }
 header {
   height: var(--heder-height);
@@ -213,6 +209,6 @@ main {
 
 @media screen and (max-width: 640px) {
   .desc-card {
-    width: 300px;
+    width: 90%;
   }
 }
