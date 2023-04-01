@@ -1,9 +1,8 @@
-version: "3"
 services:
   go:
     build:
       context: .
-      dockerfile: ./infra/go/Dockerfile
+      dockerfile: ./infra/dev/go/Dockerfile
     volumes:
       - ./backend:/backend
     environment:
@@ -15,7 +14,7 @@ services:
   deno:
     build:
       context: .
-      dockerfile: ./infra/deno/Dockerfile
+      dockerfile: ./infra/dev/deno/Dockerfile
     volumes:
       - ./frontend:/frontend
     environment:
@@ -25,7 +24,7 @@ services:
       - 8000:8000
 
   mysql:
-    build: ./infra/mysql
+    build: ./infra/dev/mysql
     environment:
       TZ: Asia/Tokyo
       MYSQL_ROOT_PASSWORD: root
@@ -36,7 +35,7 @@ services:
       - mysql_volume:/var/lib/mysql
 
   nginx:
-    build: ./infra/nginx
+    build: ./infra/dev/nginx
     ports:
       - "80:80"
       - "81:81"
