@@ -1,0 +1,10 @@
+services:
+  go:
+    build:
+      context: .
+      dockerfile: ./infra/prod/go/Dockerfile
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    ports:
+      - 8080:8080
