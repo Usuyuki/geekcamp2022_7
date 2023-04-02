@@ -12,5 +12,5 @@ func main() {
 	middleware.AllowCORS(r)
 	// ルーティング
 	route.GetRouter(r)
-    r.Run(":8001")
+    r.Run(":8080")
 }
