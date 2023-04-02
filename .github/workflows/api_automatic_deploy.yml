@@ -1,11 +1,10 @@
 name: APIの自動デプロイ
 
-on: [pull_request]
-# on:
-#   pull_request:
-#     branches:
-#       - main
-#     types: [closed]
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
 jobs:
   push_to_registry:
