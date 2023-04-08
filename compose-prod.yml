@@ -1,9 +1,14 @@
+#
+# dc -f compose-prod.yml up -d --build
+#
 services:
   go:
     image: ghcr.io/usuyuki/musubineru_api:latest
     # build:
-    #   context: .
-    #   dockerfile: ./infra/prod/go/Dockerfile
+    #   context: ./backend
+    #   dockerfile: ../infra/prod/go/Dockerfile
+    # ports:
+    #   - "8080:8080"
     environment:
       TZ: Asia/Tokyo
     tty: true
